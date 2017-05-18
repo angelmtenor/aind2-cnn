@@ -18,9 +18,9 @@ y_test = np_utils.to_categorical(y_test, 10)
 # Model Architecture
 model = Sequential()
 model.add(Flatten(input_shape=X_train.shape[1:]))
-model.add(Dense(512, activation='relu'))
+model.add(Dense(256, activation='relu'))
 model.add(Dropout(0.2))
-model.add(Dense(512, activation='relu'))
+model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(10, activation='softmax'))
 model.summary()
@@ -29,7 +29,7 @@ model.summary()
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # Train the Model
-model.fit(X_train, y_train, batch_size=128, epochs=10, validation_split=0.2, verbose=2, shuffle=True)
+model.fit(X_train, y_train, batch_size=256, epochs=10, validation_split=0.2, verbose=2, shuffle=True)
 
 # Classification Accuracy on the Test Set
 score = model.evaluate(X_test, y_test, verbose=0)
